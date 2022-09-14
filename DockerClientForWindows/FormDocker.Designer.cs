@@ -35,18 +35,13 @@
             this.lvwDocker = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.btnGetDocker = new System.Windows.Forms.Button();
-            this.lvwContainers = new System.Windows.Forms.ListView();
-            this.colImage = new System.Windows.Forms.ColumnHeader();
-            this.colID = new System.Windows.Forms.ColumnHeader();
-            this.colCreated = new System.Windows.Forms.ColumnHeader();
-            this.colStatus = new System.Windows.Forms.ColumnHeader();
             this.lblContainerName = new System.Windows.Forms.Label();
             this.gridContainers = new System.Windows.Forms.DataGridView();
-            this.toolTipInfo = new System.Windows.Forms.ToolTip(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toolTipInfo = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridContainers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,42 +77,6 @@
             this.btnGetDocker.UseVisualStyleBackColor = true;
             this.btnGetDocker.Click += new System.EventHandler(this.btnGetDocker_Click);
             // 
-            // lvwContainers
-            // 
-            this.lvwContainers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colImage,
-            this.colID,
-            this.colCreated,
-            this.colStatus});
-            this.lvwContainers.FullRowSelect = true;
-            this.lvwContainers.Location = new System.Drawing.Point(12, 47);
-            this.lvwContainers.MultiSelect = false;
-            this.lvwContainers.Name = "lvwContainers";
-            this.lvwContainers.Size = new System.Drawing.Size(1009, 145);
-            this.lvwContainers.TabIndex = 6;
-            this.lvwContainers.UseCompatibleStateImageBehavior = false;
-            this.lvwContainers.View = System.Windows.Forms.View.Details;
-            // 
-            // colImage
-            // 
-            this.colImage.Text = "Image";
-            this.colImage.Width = 500;
-            // 
-            // colID
-            // 
-            this.colID.Text = "ID";
-            this.colID.Width = 100;
-            // 
-            // colCreated
-            // 
-            this.colCreated.Text = "Created";
-            this.colCreated.Width = 150;
-            // 
-            // colStatus
-            // 
-            this.colStatus.Text = "Status";
-            this.colStatus.Width = 150;
-            // 
             // lblContainerName
             // 
             this.lblContainerName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -152,12 +111,12 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridContainers.DefaultCellStyle = dataGridViewCellStyle2;
-            this.gridContainers.Location = new System.Drawing.Point(12, 216);
+            this.gridContainers.Location = new System.Drawing.Point(12, 47);
             this.gridContainers.MultiSelect = false;
             this.gridContainers.Name = "gridContainers";
             this.gridContainers.RowTemplate.Height = 25;
             this.gridContainers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridContainers.Size = new System.Drawing.Size(1009, 209);
+            this.gridContainers.Size = new System.Drawing.Size(1009, 378);
             this.gridContainers.TabIndex = 8;
             this.gridContainers.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridContainers_CellFormatting);
             this.gridContainers.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.gridContainers_RowStateChanged);
@@ -200,7 +159,6 @@
             this.ClientSize = new System.Drawing.Size(1118, 583);
             this.Controls.Add(this.gridContainers);
             this.Controls.Add(this.lblContainerName);
-            this.Controls.Add(this.lvwContainers);
             this.Controls.Add(this.lvwDocker);
             this.Controls.Add(this.btnGetDocker);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -216,11 +174,6 @@
         private ListView lvwDocker;
         private ColumnHeader columnHeader1;
         private Button btnGetDocker;
-        private ListView lvwContainers;
-        private ColumnHeader colImage;
-        private ColumnHeader colID;
-        private ColumnHeader colCreated;
-        private ColumnHeader colStatus;
         private Label lblContainerName;
         private DataGridView gridContainers;
         private ToolTip toolTipInfo;
