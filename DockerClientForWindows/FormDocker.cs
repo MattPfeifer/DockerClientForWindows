@@ -2,6 +2,7 @@ using Docker.DotNet;
 using Docker.DotNet.Models;
 using System.Reflection;
 using System.Text;
+using ImageResources = DockerClientForWindows.Properties.Resources;
 
 namespace DockerClientForWindows
 {
@@ -20,48 +21,9 @@ namespace DockerClientForWindows
             client = new DockerClientConfiguration().CreateClient();
 
             containers = await client.Containers.ListContainersAsync(new ContainersListParameters());// { Limit = 20 });
+            //var x = await client.Containers.ListProcessesAsync(new ContainerListProcessesParameters());// { Limit = 20 });
 
             BindContainersDataGrid();
-
-            List<ContainerListResponse> gatewayContainers = containers.Where(c => c.Names.Contains("/docker_apigateway_1")).ToList();
-
-            ContainerListResponse? gatewayContainer = gatewayContainers.FirstOrDefault();
-
-            if (gatewayContainer != null)
-            {
-                var logs = await client.Containers.GetContainerLogsAsync(gatewayContainer.ID, true, new ContainerLogsParameters() { ShowStdout = true, ShowStderr = true });
-                (string stdOut, string strErr) = await logs.ReadOutputToEndAsync(CancellationToken.None);
-                lvwDocker.Items.Add(stdOut);
-
-                // Create two different encodings.
-                Encoding ascii = Encoding.ASCII;
-                Encoding unicode = Encoding.Unicode;
-                //Encoding Utf8 = Encoding.UTF8;
-
-                // // Convert the string into a byte array.
-                byte[] unicodeBytes = unicode.GetBytes(stdOut);
-
-                // // Perform the conversion from one encoding to the other.
-                byte[] ascibytes = Encoding.Convert(unicode, ascii, unicodeBytes);
-
-                // // Convert the new byte[] into a char[] and then into a string.
-                char[] asciiChars = new char[ascii.GetCharCount(ascibytes, 0, ascibytes.Length)];
-                ascii.GetChars(ascibytes, 0, ascibytes.Length, asciiChars, 0);
-                string asciiString = new string(asciiChars);
-
-
-
-
-                lvwDocker.Items.Add(asciiString);
-
-                string strX = System.Uri.UnescapeDataString(stdOut);
-                lvwDocker.Items.Add(strX);
-
-                string s2 = stdOut.Replace($"\u0001", "");
-                s2 = s2.Replace($"\0", "");
-                lvwDocker.Items.Add(s2);
-                string[] results = s2.Split($"\r\n");
-            }
         }
 
         private void BindContainersDataGrid()
@@ -76,8 +38,15 @@ namespace DockerClientForWindows
         {
             if ((sender as DataGridView).DataSource != null)
             {
-                if (e.ColumnIndex == 1) //ID
+                if (e.ColumnIndex == 0) //State Image
                 {
+                    //Image stateImage = Resources.running;
+                    e.Value = ImageResources.ResourceManager.GetObject(e.Value.ToString());// ImageResources.running; // Image.FromFile("//images/running.png");
+                }
+                else if (e.ColumnIndex == 2) //ID
+                {
+                    DataGridViewCell cell = this.gridContainers.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    cell.ToolTipText = e.Value.ToString();
                     e.Value = e.Value.ToString().Substring(0, 10);
                     //TODO: Set the cell to the entire value
                     //toolTipInfo.SetToolTip(e.)
@@ -93,9 +62,33 @@ namespace DockerClientForWindows
                 if (gridRow!= null)
                 {
                     ContainerListResponse selectedContainer = gridRow.DataBoundItem as ContainerListResponse;
-                    lblContainerName.Text = selectedContainer.ID;
+                    ViewLog(selectedContainer);
                 }
             }
         }
+
+        async private void ViewLog(ContainerListResponse selectedContainer)
+        {
+            if (selectedContainer != null)
+            {
+
+                lvwDocker.Items.Clear();
+
+                var logs = await client.Containers.GetContainerLogsAsync(selectedContainer.ID, false, new ContainerLogsParameters() { ShowStdout = true, ShowStderr = true });
+                (string stdOut, string strErr) = await logs.ReadOutputToEndAsync(CancellationToken.None);
+                string[] logLines = GetStrings(stdOut);
+                foreach (string logLine in logLines)
+                {
+                    lvwDocker.Items.Add(logLine);
+                }
+
+            }
+        }
+
+        private string[] GetStrings(string rawString)
+        {
+            return rawString.Split("\r\n");
+        }
+
     }
 }

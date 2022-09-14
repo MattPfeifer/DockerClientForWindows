@@ -35,19 +35,24 @@
             this.lvwDocker = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.btnGetDocker = new System.Windows.Forms.Button();
-            this.lblContainerName = new System.Windows.Forms.Label();
             this.gridContainers = new System.Windows.Forms.DataGridView();
+            this.toolTipInfo = new System.Windows.Forms.ToolTip(this.components);
+            this.colState = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.toolTipInfo = new System.Windows.Forms.ToolTip(this.components);
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblContainer = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridContainers)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lvwDocker
             // 
-            this.lvwDocker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.lvwDocker.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lvwDocker.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
@@ -57,7 +62,7 @@
             this.lvwDocker.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvwDocker.Location = new System.Drawing.Point(12, 444);
             this.lvwDocker.Name = "lvwDocker";
-            this.lvwDocker.Size = new System.Drawing.Size(1094, 127);
+            this.lvwDocker.Size = new System.Drawing.Size(1357, 297);
             this.lvwDocker.TabIndex = 5;
             this.lvwDocker.UseCompatibleStateImageBehavior = false;
             this.lvwDocker.View = System.Windows.Forms.View.Details;
@@ -71,24 +76,18 @@
             // 
             this.btnGetDocker.Location = new System.Drawing.Point(12, 12);
             this.btnGetDocker.Name = "btnGetDocker";
-            this.btnGetDocker.Size = new System.Drawing.Size(104, 29);
+            this.btnGetDocker.Size = new System.Drawing.Size(169, 29);
             this.btnGetDocker.TabIndex = 4;
-            this.btnGetDocker.Text = "GetDocker";
+            this.btnGetDocker.Text = "Get Docker Containers";
             this.btnGetDocker.UseVisualStyleBackColor = true;
             this.btnGetDocker.Click += new System.EventHandler(this.btnGetDocker_Click);
-            // 
-            // lblContainerName
-            // 
-            this.lblContainerName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblContainerName.Location = new System.Drawing.Point(753, 21);
-            this.lblContainerName.Name = "lblContainerName";
-            this.lblContainerName.Size = new System.Drawing.Size(234, 23);
-            this.lblContainerName.TabIndex = 7;
             // 
             // gridContainers
             // 
             this.gridContainers.AllowUserToAddRows = false;
             this.gridContainers.AllowUserToDeleteRows = false;
+            this.gridContainers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -99,6 +98,7 @@
             this.gridContainers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridContainers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridContainers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colState,
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
@@ -114,12 +114,21 @@
             this.gridContainers.Location = new System.Drawing.Point(12, 47);
             this.gridContainers.MultiSelect = false;
             this.gridContainers.Name = "gridContainers";
+            this.gridContainers.RowHeadersVisible = false;
             this.gridContainers.RowTemplate.Height = 25;
             this.gridContainers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridContainers.Size = new System.Drawing.Size(1009, 378);
+            this.gridContainers.Size = new System.Drawing.Size(1054, 378);
             this.gridContainers.TabIndex = 8;
             this.gridContainers.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridContainers_CellFormatting);
             this.gridContainers.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.gridContainers_RowStateChanged);
+            // 
+            // colState
+            // 
+            this.colState.DataPropertyName = "State";
+            this.colState.HeaderText = "";
+            this.colState.Name = "colState";
+            this.colState.ReadOnly = true;
+            this.colState.Width = 30;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -127,7 +136,7 @@
             this.dataGridViewTextBoxColumn1.HeaderText = "Image";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 500;
+            this.dataGridViewTextBoxColumn1.Width = 600;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -135,6 +144,7 @@
             this.dataGridViewTextBoxColumn2.HeaderText = "ID";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 90;
             // 
             // dataGridViewTextBoxColumn3
             // 
@@ -142,7 +152,7 @@
             this.dataGridViewTextBoxColumn3.HeaderText = "Created";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 180;
+            this.dataGridViewTextBoxColumn3.Width = 150;
             // 
             // dataGridViewTextBoxColumn4
             // 
@@ -150,21 +160,51 @@
             this.dataGridViewTextBoxColumn4.HeaderText = "Status";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 120;
+            this.dataGridViewTextBoxColumn4.Width = 150;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.lblContainer);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Location = new System.Drawing.Point(1087, 47);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(282, 378);
+            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Selected Container";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(18, 40);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(39, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Name";
+            // 
+            // lblContainer
+            // 
+            this.lblContainer.AutoSize = true;
+            this.lblContainer.Location = new System.Drawing.Point(73, 40);
+            this.lblContainer.Name = "lblContainer";
+            this.lblContainer.Size = new System.Drawing.Size(0, 15);
+            this.lblContainer.TabIndex = 1;
             // 
             // FormDocker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1118, 583);
+            this.ClientSize = new System.Drawing.Size(1381, 753);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gridContainers);
-            this.Controls.Add(this.lblContainerName);
             this.Controls.Add(this.lvwDocker);
             this.Controls.Add(this.btnGetDocker);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormDocker";
             this.Text = "Docker for Windows";
             ((System.ComponentModel.ISupportInitialize)(this.gridContainers)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -174,12 +214,15 @@
         private ListView lvwDocker;
         private ColumnHeader columnHeader1;
         private Button btnGetDocker;
-        private Label lblContainerName;
         private DataGridView gridContainers;
         private ToolTip toolTipInfo;
+        private DataGridViewImageColumn colState;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private GroupBox groupBox1;
+        private Label lblContainer;
+        private Label label1;
     }
 }
