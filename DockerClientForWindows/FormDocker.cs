@@ -11,6 +11,8 @@ namespace DockerClientForWindows
         DockerClient client;
         IList<ContainerListResponse> containers;
 
+        ContainerListResponse currentContainer;
+
         public FormDocker()
         {
             InitializeComponent();
@@ -58,37 +60,53 @@ namespace DockerClientForWindows
         {
             if (e.StateChanged == DataGridViewElementStates.Selected)
             {
-                DataGridViewRow gridRow = ((sender as DataGridView).SelectedRows.Count>0) ? (sender as DataGridView).SelectedRows[0] : null;
-                if (gridRow!= null)
+                DataGridViewRow gridRow = ((sender as DataGridView).SelectedRows.Count > 0) ? (sender as DataGridView).SelectedRows[0] : null;
+                if (gridRow != null)
                 {
-                    ContainerListResponse selectedContainer = gridRow.DataBoundItem as ContainerListResponse;
-                    ViewLog(selectedContainer);
+                    currentContainer = gridRow.DataBoundItem as ContainerListResponse;
+                    lblLogsForContainer.Text = $"Logs for {currentContainer.Image}";
+
+                    panelSelectedContainer.Visible = true;
+                    lblContainer.Text = currentContainer.Image;
+
+                    ViewLog();
                 }
             }
         }
 
-        async private void ViewLog(ContainerListResponse selectedContainer)
+        async private void ViewLog()
         {
-            if (selectedContainer != null)
+            lvwDocker.Items.Clear();
+
+            var logs = await client.Containers.GetContainerLogsAsync(currentContainer.ID, false, new ContainerLogsParameters() { ShowStdout = true, ShowStderr = true });
+            (string stdOut, string strErr) = await logs.ReadOutputToEndAsync(CancellationToken.None);
+            string[] logLines = GetStrings(stdOut);
+            foreach (string logLine in logLines)
             {
-
-                lvwDocker.Items.Clear();
-
-                var logs = await client.Containers.GetContainerLogsAsync(selectedContainer.ID, false, new ContainerLogsParameters() { ShowStdout = true, ShowStderr = true });
-                (string stdOut, string strErr) = await logs.ReadOutputToEndAsync(CancellationToken.None);
-                string[] logLines = GetStrings(stdOut);
-                foreach (string logLine in logLines)
-                {
-                    lvwDocker.Items.Add(logLine);
-                }
-
+                lvwDocker.Items.Add(logLine);
             }
         }
+
 
         private string[] GetStrings(string rawString)
         {
             return rawString.Split("\r\n");
         }
 
+        private async void btnStop_Click(object sender, EventArgs e)
+        {
+            var stopped = await client.Containers.StartContainerAsync(currentContainer.ID, new ContainerStartParameters());
+            //Stopped not working yet
+
+
+
+                //Look into the ones below.
+
+            //TODO:  Create Container?  Any reason to do this?  Maybe i could kick off graphql this way???
+            //TODO:  client.Containers.GetContainerStatsAsync?  What would this even do.
+            // Anything else from https://github.com/dotnet/Docker.DotNet
+
+            //A refresh of containers and the log for the current
+        }
     }
 }

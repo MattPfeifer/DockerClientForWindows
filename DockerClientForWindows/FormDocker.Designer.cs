@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDocker));
@@ -36,17 +35,20 @@
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.btnGetDocker = new System.Windows.Forms.Button();
             this.gridContainers = new System.Windows.Forms.DataGridView();
-            this.toolTipInfo = new System.Windows.Forms.ToolTip(this.components);
             this.colState = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.panelSelectedContainer = new System.Windows.Forms.Panel();
             this.lblContainer = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblLogsForContainer = new System.Windows.Forms.Label();
+            this.btnStop = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridContainers)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.panelSelectedContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // lvwDocker
@@ -60,9 +62,9 @@
             this.lvwDocker.FullRowSelect = true;
             this.lvwDocker.GridLines = true;
             this.lvwDocker.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvwDocker.Location = new System.Drawing.Point(12, 444);
+            this.lvwDocker.Location = new System.Drawing.Point(12, 468);
             this.lvwDocker.Name = "lvwDocker";
-            this.lvwDocker.Size = new System.Drawing.Size(1357, 297);
+            this.lvwDocker.Size = new System.Drawing.Size(1581, 273);
             this.lvwDocker.TabIndex = 5;
             this.lvwDocker.UseCompatibleStateImageBehavior = false;
             this.lvwDocker.View = System.Windows.Forms.View.Details;
@@ -164,37 +166,68 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.lblContainer);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(1087, 47);
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.panelSelectedContainer);
+            this.groupBox1.Location = new System.Drawing.Point(1081, 47);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(282, 378);
+            this.groupBox1.Size = new System.Drawing.Size(512, 378);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Selected Container";
             // 
-            // label1
+            // panelSelectedContainer
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(39, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Name";
+            this.panelSelectedContainer.Controls.Add(this.btnStop);
+            this.panelSelectedContainer.Controls.Add(this.lblContainer);
+            this.panelSelectedContainer.Controls.Add(this.label1);
+            this.panelSelectedContainer.Location = new System.Drawing.Point(6, 22);
+            this.panelSelectedContainer.Name = "panelSelectedContainer";
+            this.panelSelectedContainer.Size = new System.Drawing.Size(500, 350);
+            this.panelSelectedContainer.TabIndex = 2;
+            this.panelSelectedContainer.Visible = false;
             // 
             // lblContainer
             // 
             this.lblContainer.AutoSize = true;
-            this.lblContainer.Location = new System.Drawing.Point(73, 40);
+            this.lblContainer.Location = new System.Drawing.Point(13, 42);
             this.lblContainer.Name = "lblContainer";
             this.lblContainer.Size = new System.Drawing.Size(0, 15);
-            this.lblContainer.TabIndex = 1;
+            this.lblContainer.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(13, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 15);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Name";
+            // 
+            // lblLogsForContainer
+            // 
+            this.lblLogsForContainer.AutoSize = true;
+            this.lblLogsForContainer.Location = new System.Drawing.Point(12, 450);
+            this.lblLogsForContainer.Name = "lblLogsForContainer";
+            this.lblLogsForContainer.Size = new System.Drawing.Size(0, 15);
+            this.lblLogsForContainer.TabIndex = 10;
+            // 
+            // btnStop
+            // 
+            this.btnStop.Location = new System.Drawing.Point(16, 96);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(147, 34);
+            this.btnStop.TabIndex = 4;
+            this.btnStop.Text = "Stop Container";
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // FormDocker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1381, 753);
+            this.ClientSize = new System.Drawing.Size(1605, 753);
+            this.Controls.Add(this.lblLogsForContainer);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gridContainers);
             this.Controls.Add(this.lvwDocker);
@@ -204,8 +237,10 @@
             this.Text = "Docker for Windows";
             ((System.ComponentModel.ISupportInitialize)(this.gridContainers)).EndInit();
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.panelSelectedContainer.ResumeLayout(false);
+            this.panelSelectedContainer.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -215,14 +250,16 @@
         private ColumnHeader columnHeader1;
         private Button btnGetDocker;
         private DataGridView gridContainers;
-        private ToolTip toolTipInfo;
         private DataGridViewImageColumn colState;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private GroupBox groupBox1;
+        private Label lblLogsForContainer;
+        private Panel panelSelectedContainer;
         private Label lblContainer;
         private Label label1;
+        private Button btnStop;
     }
 }
