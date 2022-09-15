@@ -42,10 +42,12 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panelSelectedContainer = new System.Windows.Forms.Panel();
+            this.progressDocker = new System.Windows.Forms.ProgressBar();
+            this.btnStart = new System.Windows.Forms.Button();
+            this.btnStop = new System.Windows.Forms.Button();
             this.lblContainer = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblLogsForContainer = new System.Windows.Forms.Label();
-            this.btnStop = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridContainers)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panelSelectedContainer.SuspendLayout();
@@ -177,6 +179,8 @@
             // 
             // panelSelectedContainer
             // 
+            this.panelSelectedContainer.Controls.Add(this.progressDocker);
+            this.panelSelectedContainer.Controls.Add(this.btnStart);
             this.panelSelectedContainer.Controls.Add(this.btnStop);
             this.panelSelectedContainer.Controls.Add(this.lblContainer);
             this.panelSelectedContainer.Controls.Add(this.label1);
@@ -185,6 +189,36 @@
             this.panelSelectedContainer.Size = new System.Drawing.Size(500, 350);
             this.panelSelectedContainer.TabIndex = 2;
             this.panelSelectedContainer.Visible = false;
+            // 
+            // progressDocker
+            // 
+            this.progressDocker.Location = new System.Drawing.Point(190, 80);
+            this.progressDocker.MarqueeAnimationSpeed = 25;
+            this.progressDocker.Name = "progressDocker";
+            this.progressDocker.Size = new System.Drawing.Size(289, 34);
+            this.progressDocker.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressDocker.TabIndex = 6;
+            this.progressDocker.Visible = false;
+            // 
+            // btnStart
+            // 
+            this.btnStart.Location = new System.Drawing.Point(13, 130);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(147, 34);
+            this.btnStart.TabIndex = 5;
+            this.btnStart.Text = "Start Container";
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
+            // btnStop
+            // 
+            this.btnStop.Location = new System.Drawing.Point(13, 80);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(147, 34);
+            this.btnStop.TabIndex = 4;
+            this.btnStop.Text = "Stop Container";
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // lblContainer
             // 
@@ -211,16 +245,6 @@
             this.lblLogsForContainer.Name = "lblLogsForContainer";
             this.lblLogsForContainer.Size = new System.Drawing.Size(0, 15);
             this.lblLogsForContainer.TabIndex = 10;
-            // 
-            // btnStop
-            // 
-            this.btnStop.Location = new System.Drawing.Point(16, 96);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(147, 34);
-            this.btnStop.TabIndex = 4;
-            this.btnStop.Text = "Stop Container";
-            this.btnStop.UseVisualStyleBackColor = true;
-            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // FormDocker
             // 
@@ -261,5 +285,7 @@
         private Label lblContainer;
         private Label label1;
         private Button btnStop;
+        private Button btnStart;
+        private ProgressBar progressDocker;
     }
 }

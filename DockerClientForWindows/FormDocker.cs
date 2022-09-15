@@ -22,7 +22,7 @@ namespace DockerClientForWindows
         {
             client = new DockerClientConfiguration().CreateClient();
 
-            containers = await client.Containers.ListContainersAsync(new ContainersListParameters());// { Limit = 20 });
+            containers = await client.Containers.ListContainersAsync(new ContainersListParameters() {  All = true });// { Limit = 20 });
             //var x = await client.Containers.ListProcessesAsync(new ContainerListProcessesParameters());// { Limit = 20 });
 
             BindContainersDataGrid();
@@ -93,20 +93,20 @@ namespace DockerClientForWindows
             return rawString.Split("\r\n");
         }
 
-        private async void btnStop_Click(object sender, EventArgs e)
+        async private void btnStop_Click(object sender, EventArgs e)
         {
-            var stopped = await client.Containers.StartContainerAsync(currentContainer.ID, new ContainerStartParameters());
-            //Stopped not working yet
+            progressDocker.Value = 0;
+            progressDocker.Visible = true;
+            var stopped = await client.Containers.StopContainerAsync(currentContainer.ID, new ContainerStopParameters() { WaitBeforeKillSeconds = 5 });
+            progressDocker.Visible = false;
+        }
 
-
-
-                //Look into the ones below.
-
-            //TODO:  Create Container?  Any reason to do this?  Maybe i could kick off graphql this way???
-            //TODO:  client.Containers.GetContainerStatsAsync?  What would this even do.
-            // Anything else from https://github.com/dotnet/Docker.DotNet
-
-            //A refresh of containers and the log for the current
+        async private void btnStart_Click(object sender, EventArgs e)
+        {
+            progressDocker.Value = 0;
+            progressDocker.Visible = true;
+            var started = await client.Containers.StartContainerAsync(currentContainer.ID, new ContainerStartParameters());
+            progressDocker.Visible = false;
         }
     }
 }

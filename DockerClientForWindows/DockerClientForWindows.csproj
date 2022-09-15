@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <Content Include="IconDocker.ico" />
+    <None Include="images\exited.png" />
   </ItemGroup>
 
   <ItemGroup>
