@@ -4,6 +4,6 @@ This is an application that can be used to avoid knowing all the stupid commands
 
 Planned Features:
 
-• View details for active containers
-• Start and stop containers
-• View logs
+- View details for active containers
+- Start and stop containers
+- View logs
