@@ -27,7 +27,14 @@ namespace DockerClientForWindows
         async private Task LoadContainers()
         {
             client = new DockerClientConfiguration().CreateClient();
-            containers = await client.Containers.ListContainersAsync(new ContainersListParameters() {  All = true });
+            try
+            {
+                containers = await client.Containers.ListContainersAsync(new ContainersListParameters() { All = true });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unable to load docker containers.", "Is Docker Running?", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void BindContainersDataGrid()
