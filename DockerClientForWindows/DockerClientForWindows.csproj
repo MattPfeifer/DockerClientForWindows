@@ -17,6 +17,14 @@
 
   <ItemGroup>
     <Content Include="IconDocker.ico" />
+    <None Include="images\stopped32.png" />
+    <None Include="images\running32.png" />
+    <None Include="images\restarted32.png" />
+    <None Include="images\paused32.png" />
+    <None Include="images\exited32.png" />
+    <None Include="images\dead32.png" />
+    <None Include="images\created32.png" />
+    <None Include="images\base32.png" />
     <None Include="images\exited.png" />
   </ItemGroup>
 

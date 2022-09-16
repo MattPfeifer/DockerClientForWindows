@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDocker));
             this.lvwDocker = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-            this.btnGetDocker = new System.Windows.Forms.Button();
+            this.btnGetDockerContainers = new System.Windows.Forms.Button();
             this.gridContainers = new System.Windows.Forms.DataGridView();
             this.colState = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,15 +42,23 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panelSelectedContainer = new System.Windows.Forms.Panel();
+            this.pbImage = new System.Windows.Forms.PictureBox();
+            this.lblCreated = new System.Windows.Forms.Label();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.lblID = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.progressDocker = new System.Windows.Forms.ProgressBar();
             this.btnStart = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
-            this.lblContainer = new System.Windows.Forms.Label();
+            this.lblImage = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblLogsForContainer = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridContainers)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panelSelectedContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
             // 
             // lvwDocker
@@ -76,15 +84,15 @@
             this.columnHeader1.Text = "Database Stuff";
             this.columnHeader1.Width = 2500;
             // 
-            // btnGetDocker
+            // btnGetDockerContainers
             // 
-            this.btnGetDocker.Location = new System.Drawing.Point(12, 12);
-            this.btnGetDocker.Name = "btnGetDocker";
-            this.btnGetDocker.Size = new System.Drawing.Size(169, 29);
-            this.btnGetDocker.TabIndex = 4;
-            this.btnGetDocker.Text = "Get Docker Containers";
-            this.btnGetDocker.UseVisualStyleBackColor = true;
-            this.btnGetDocker.Click += new System.EventHandler(this.btnGetDocker_Click);
+            this.btnGetDockerContainers.Location = new System.Drawing.Point(12, 12);
+            this.btnGetDockerContainers.Name = "btnGetDockerContainers";
+            this.btnGetDockerContainers.Size = new System.Drawing.Size(169, 29);
+            this.btnGetDockerContainers.TabIndex = 4;
+            this.btnGetDockerContainers.Text = "Refresh Docker Containers";
+            this.btnGetDockerContainers.UseVisualStyleBackColor = true;
+            this.btnGetDockerContainers.Click += new System.EventHandler(this.btnGetDocker_Click);
             // 
             // gridContainers
             // 
@@ -92,14 +100,14 @@
             this.gridContainers.AllowUserToDeleteRows = false;
             this.gridContainers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridContainers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridContainers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gridContainers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridContainers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colState,
@@ -107,14 +115,14 @@
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridContainers.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridContainers.DefaultCellStyle = dataGridViewCellStyle4;
             this.gridContainers.Location = new System.Drawing.Point(12, 47);
             this.gridContainers.MultiSelect = false;
             this.gridContainers.Name = "gridContainers";
@@ -179,10 +187,17 @@
             // 
             // panelSelectedContainer
             // 
+            this.panelSelectedContainer.Controls.Add(this.pbImage);
+            this.panelSelectedContainer.Controls.Add(this.lblCreated);
+            this.panelSelectedContainer.Controls.Add(this.lblStatus);
+            this.panelSelectedContainer.Controls.Add(this.lblID);
+            this.panelSelectedContainer.Controls.Add(this.label4);
+            this.panelSelectedContainer.Controls.Add(this.label3);
+            this.panelSelectedContainer.Controls.Add(this.label2);
             this.panelSelectedContainer.Controls.Add(this.progressDocker);
             this.panelSelectedContainer.Controls.Add(this.btnStart);
             this.panelSelectedContainer.Controls.Add(this.btnStop);
-            this.panelSelectedContainer.Controls.Add(this.lblContainer);
+            this.panelSelectedContainer.Controls.Add(this.lblImage);
             this.panelSelectedContainer.Controls.Add(this.label1);
             this.panelSelectedContainer.Location = new System.Drawing.Point(6, 22);
             this.panelSelectedContainer.Name = "panelSelectedContainer";
@@ -190,21 +205,80 @@
             this.panelSelectedContainer.TabIndex = 2;
             this.panelSelectedContainer.Visible = false;
             // 
+            // pbImage
+            // 
+            this.pbImage.Location = new System.Drawing.Point(13, 236);
+            this.pbImage.Name = "pbImage";
+            this.pbImage.Size = new System.Drawing.Size(32, 32);
+            this.pbImage.TabIndex = 13;
+            this.pbImage.TabStop = false;
+            // 
+            // lblCreated
+            // 
+            this.lblCreated.Location = new System.Drawing.Point(13, 129);
+            this.lblCreated.Name = "lblCreated";
+            this.lblCreated.Size = new System.Drawing.Size(466, 20);
+            this.lblCreated.TabIndex = 12;
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Location = new System.Drawing.Point(13, 185);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(466, 20);
+            this.lblStatus.TabIndex = 11;
+            // 
+            // lblID
+            // 
+            this.lblID.Location = new System.Drawing.Point(13, 74);
+            this.lblID.Name = "lblID";
+            this.lblID.Size = new System.Drawing.Size(466, 20);
+            this.lblID.TabIndex = 10;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(13, 170);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(42, 15);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Status";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(13, 114);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(51, 15);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Created";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(13, 59);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(20, 15);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "ID";
+            // 
             // progressDocker
             // 
-            this.progressDocker.Location = new System.Drawing.Point(190, 80);
+            this.progressDocker.Location = new System.Drawing.Point(225, 236);
             this.progressDocker.MarqueeAnimationSpeed = 25;
             this.progressDocker.Name = "progressDocker";
-            this.progressDocker.Size = new System.Drawing.Size(289, 34);
+            this.progressDocker.Size = new System.Drawing.Size(254, 32);
             this.progressDocker.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressDocker.TabIndex = 6;
             this.progressDocker.Visible = false;
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(13, 130);
+            this.btnStart.Location = new System.Drawing.Point(62, 236);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(147, 34);
+            this.btnStart.Size = new System.Drawing.Size(147, 32);
             this.btnStart.TabIndex = 5;
             this.btnStart.Text = "Start Container";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -212,21 +286,20 @@
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(13, 80);
+            this.btnStop.Location = new System.Drawing.Point(62, 236);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(147, 34);
+            this.btnStop.Size = new System.Drawing.Size(147, 32);
             this.btnStop.TabIndex = 4;
             this.btnStop.Text = "Stop Container";
             this.btnStop.UseVisualStyleBackColor = true;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
-            // lblContainer
+            // lblImage
             // 
-            this.lblContainer.AutoSize = true;
-            this.lblContainer.Location = new System.Drawing.Point(13, 42);
-            this.lblContainer.Name = "lblContainer";
-            this.lblContainer.Size = new System.Drawing.Size(0, 15);
-            this.lblContainer.TabIndex = 3;
+            this.lblImage.Location = new System.Drawing.Point(13, 26);
+            this.lblImage.Name = "lblImage";
+            this.lblImage.Size = new System.Drawing.Size(466, 20);
+            this.lblImage.TabIndex = 3;
             // 
             // label1
             // 
@@ -255,7 +328,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gridContainers);
             this.Controls.Add(this.lvwDocker);
-            this.Controls.Add(this.btnGetDocker);
+            this.Controls.Add(this.btnGetDockerContainers);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormDocker";
             this.Text = "Docker for Windows";
@@ -263,6 +336,7 @@
             this.groupBox1.ResumeLayout(false);
             this.panelSelectedContainer.ResumeLayout(false);
             this.panelSelectedContainer.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -272,7 +346,7 @@
 
         private ListView lvwDocker;
         private ColumnHeader columnHeader1;
-        private Button btnGetDocker;
+        private Button btnGetDockerContainers;
         private DataGridView gridContainers;
         private DataGridViewImageColumn colState;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
@@ -282,10 +356,17 @@
         private GroupBox groupBox1;
         private Label lblLogsForContainer;
         private Panel panelSelectedContainer;
-        private Label lblContainer;
+        private Label lblImage;
         private Label label1;
         private Button btnStop;
         private Button btnStart;
         private ProgressBar progressDocker;
+        private Label lblCreated;
+        private Label lblStatus;
+        private Label lblID;
+        private Label label4;
+        private Label label3;
+        private Label label2;
+        private PictureBox pbImage;
     }
 }

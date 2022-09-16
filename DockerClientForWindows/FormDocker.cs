@@ -16,16 +16,20 @@ namespace DockerClientForWindows
         public FormDocker()
         {
             InitializeComponent();
+            Task.Run(async () => await LoadContainers()).Wait();
+            BindContainersDataGrid();
         }
 
         async private void btnGetDocker_Click(object sender, EventArgs e)
         {
-            client = new DockerClientConfiguration().CreateClient();
-
-            containers = await client.Containers.ListContainersAsync(new ContainersListParameters() {  All = true });// { Limit = 20 });
-            //var x = await client.Containers.ListProcessesAsync(new ContainerListProcessesParameters());// { Limit = 20 });
-
+            await LoadContainers();
             BindContainersDataGrid();
+        }
+
+        async private Task LoadContainers()
+        {
+            client = new DockerClientConfiguration().CreateClient();
+            containers = await client.Containers.ListContainersAsync(new ContainersListParameters() {  All = true });
         }
 
         private void BindContainersDataGrid()
@@ -42,16 +46,13 @@ namespace DockerClientForWindows
             {
                 if (e.ColumnIndex == 0) //State Image
                 {
-                    //Image stateImage = Resources.running;
-                    e.Value = ImageResources.ResourceManager.GetObject(e.Value.ToString());// ImageResources.running; // Image.FromFile("//images/running.png");
+                    e.Value = ImageResources.ResourceManager.GetObject($"{e.Value}");
                 }
                 else if (e.ColumnIndex == 2) //ID
                 {
                     DataGridViewCell cell = this.gridContainers.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                    cell.ToolTipText = e.Value.ToString();
-                    e.Value = e.Value.ToString().Substring(0, 10);
-                    //TODO: Set the cell to the entire value
-                    //toolTipInfo.SetToolTip(e.)
+                    cell.ToolTipText = $"{e.Value}";
+                    e.Value = $"{e.Value}".Substring(0, 10);
                 }
             }
         }
@@ -64,14 +65,26 @@ namespace DockerClientForWindows
                 if (gridRow != null)
                 {
                     currentContainer = gridRow.DataBoundItem as ContainerListResponse;
+
                     lblLogsForContainer.Text = $"Logs for {currentContainer.Image}";
-
-                    panelSelectedContainer.Visible = true;
-                    lblContainer.Text = currentContainer.Image;
-
                     ViewLog();
+
+                    ShowContainerDetails();
                 }
             }
+        }
+
+        private void ShowContainerDetails()
+        {
+            panelSelectedContainer.Visible = true;
+            lblImage.Text = currentContainer.Image;
+            lblID.Text = currentContainer.ID;
+            lblCreated.Text = currentContainer.Created.ToString();
+            lblStatus.Text = currentContainer.Status;
+
+            pbImage.Image = ImageResources.ResourceManager.GetObject($"{currentContainer.State}32") as Image;
+            btnStart.Visible = (currentContainer.State == "stopped" || currentContainer.State == "exited");
+            btnStop.Visible = (currentContainer.State == "running");
         }
 
         async private void ViewLog()
@@ -99,6 +112,7 @@ namespace DockerClientForWindows
             progressDocker.Visible = true;
             var stopped = await client.Containers.StopContainerAsync(currentContainer.ID, new ContainerStopParameters() { WaitBeforeKillSeconds = 5 });
             progressDocker.Visible = false;
+            UpdateCurrentContainer();
         }
 
         async private void btnStart_Click(object sender, EventArgs e)
@@ -107,6 +121,39 @@ namespace DockerClientForWindows
             progressDocker.Visible = true;
             var started = await client.Containers.StartContainerAsync(currentContainer.ID, new ContainerStartParameters());
             progressDocker.Visible = false;
+            UpdateCurrentContainer();
+        }
+
+        async private void UpdateCurrentContainer()
+        {
+            //await LoadContainers();
+            IList<ContainerListResponse> updatedContainers = await client.Containers.ListContainersAsync(new ContainersListParameters()
+            {
+                All = true,
+                Filters = new Dictionary<string, IDictionary<string, bool>>
+                {
+                    {
+                        "id", new Dictionary<string, bool>
+                        {
+                            { currentContainer.ID, true},
+                        }
+                    }
+                }
+            });
+
+            currentContainer = updatedContainers.FirstOrDefault();
+
+            if (currentContainer != null)
+            {
+                int currentIndex = containers.ToList().FindIndex(c => c.ID == currentContainer.ID);
+                if (currentIndex >= 0)
+                {
+                    containers[currentIndex] = currentContainer;
+                }
+                ViewLog();
+                BindContainersDataGrid();
+                gridContainers.Rows[currentIndex].Selected = true;
+            }
         }
     }
 }
