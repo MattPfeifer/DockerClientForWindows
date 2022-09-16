@@ -1,7 +1,5 @@
 using Docker.DotNet;
 using Docker.DotNet.Models;
-using System.Reflection;
-using System.Text;
 using ImageResources = DockerClientForWindows.Properties.Resources;
 
 namespace DockerClientForWindows
@@ -126,7 +124,6 @@ namespace DockerClientForWindows
 
         async private void UpdateCurrentContainer()
         {
-            //await LoadContainers();
             IList<ContainerListResponse> updatedContainers = await client.Containers.ListContainersAsync(new ContainersListParameters()
             {
                 All = true,

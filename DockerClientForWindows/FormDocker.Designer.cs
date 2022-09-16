@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDocker));
             this.lvwDocker = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
@@ -100,14 +100,14 @@
             this.gridContainers.AllowUserToDeleteRows = false;
             this.gridContainers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridContainers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridContainers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridContainers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridContainers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colState,
@@ -115,14 +115,14 @@
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridContainers.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridContainers.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridContainers.Location = new System.Drawing.Point(12, 47);
             this.gridContainers.MultiSelect = false;
             this.gridContainers.Name = "gridContainers";
@@ -195,10 +195,10 @@
             this.panelSelectedContainer.Controls.Add(this.label3);
             this.panelSelectedContainer.Controls.Add(this.label2);
             this.panelSelectedContainer.Controls.Add(this.progressDocker);
-            this.panelSelectedContainer.Controls.Add(this.btnStart);
-            this.panelSelectedContainer.Controls.Add(this.btnStop);
             this.panelSelectedContainer.Controls.Add(this.lblImage);
             this.panelSelectedContainer.Controls.Add(this.label1);
+            this.panelSelectedContainer.Controls.Add(this.btnStop);
+            this.panelSelectedContainer.Controls.Add(this.btnStart);
             this.panelSelectedContainer.Location = new System.Drawing.Point(6, 22);
             this.panelSelectedContainer.Name = "panelSelectedContainer";
             this.panelSelectedContainer.Size = new System.Drawing.Size(500, 350);
@@ -207,7 +207,7 @@
             // 
             // pbImage
             // 
-            this.pbImage.Location = new System.Drawing.Point(13, 236);
+            this.pbImage.Location = new System.Drawing.Point(13, 173);
             this.pbImage.Name = "pbImage";
             this.pbImage.Size = new System.Drawing.Size(32, 32);
             this.pbImage.TabIndex = 13;
@@ -217,28 +217,28 @@
             // 
             this.lblCreated.Location = new System.Drawing.Point(13, 129);
             this.lblCreated.Name = "lblCreated";
-            this.lblCreated.Size = new System.Drawing.Size(466, 20);
+            this.lblCreated.Size = new System.Drawing.Size(474, 20);
             this.lblCreated.TabIndex = 12;
             // 
             // lblStatus
             // 
-            this.lblStatus.Location = new System.Drawing.Point(13, 185);
+            this.lblStatus.Location = new System.Drawing.Point(62, 185);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(466, 20);
+            this.lblStatus.Size = new System.Drawing.Size(425, 20);
             this.lblStatus.TabIndex = 11;
             // 
             // lblID
             // 
             this.lblID.Location = new System.Drawing.Point(13, 74);
             this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(466, 20);
+            this.lblID.Size = new System.Drawing.Size(474, 20);
             this.lblID.TabIndex = 10;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(13, 170);
+            this.label4.Location = new System.Drawing.Point(62, 170);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(42, 15);
             this.label4.TabIndex = 9;
@@ -266,31 +266,35 @@
             // 
             // progressDocker
             // 
-            this.progressDocker.Location = new System.Drawing.Point(225, 236);
+            this.progressDocker.Location = new System.Drawing.Point(166, 236);
             this.progressDocker.MarqueeAnimationSpeed = 25;
             this.progressDocker.Name = "progressDocker";
-            this.progressDocker.Size = new System.Drawing.Size(254, 32);
+            this.progressDocker.Size = new System.Drawing.Size(321, 32);
             this.progressDocker.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressDocker.TabIndex = 6;
             this.progressDocker.Visible = false;
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(62, 236);
+            this.btnStart.Image = global::DockerClientForWindows.Properties.Resources.Play24;
+            this.btnStart.Location = new System.Drawing.Point(13, 236);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(147, 32);
             this.btnStart.TabIndex = 5;
-            this.btnStart.Text = "Start Container";
+            this.btnStart.Text = "    Start Container";
+            this.btnStart.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(62, 236);
+            this.btnStop.Image = global::DockerClientForWindows.Properties.Resources.Stop24;
+            this.btnStop.Location = new System.Drawing.Point(13, 236);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(147, 32);
             this.btnStop.TabIndex = 4;
-            this.btnStop.Text = "Stop Container";
+            this.btnStop.Text = "    Stop Container";
+            this.btnStop.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnStop.UseVisualStyleBackColor = true;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
@@ -298,7 +302,7 @@
             // 
             this.lblImage.Location = new System.Drawing.Point(13, 26);
             this.lblImage.Name = "lblImage";
-            this.lblImage.Size = new System.Drawing.Size(466, 20);
+            this.lblImage.Size = new System.Drawing.Size(474, 20);
             this.lblImage.TabIndex = 3;
             // 
             // label1

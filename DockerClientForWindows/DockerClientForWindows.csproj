@@ -17,6 +17,8 @@
 
   <ItemGroup>
     <Content Include="IconDocker.ico" />
+    <None Include="images\Stop24.png" />
+    <None Include="images\Play24.png" />
     <None Include="images\stopped32.png" />
     <None Include="images\running32.png" />
     <None Include="images\restarted32.png" />

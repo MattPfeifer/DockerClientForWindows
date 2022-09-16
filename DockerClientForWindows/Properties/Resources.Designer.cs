@@ -153,6 +153,16 @@ namespace DockerClientForWindows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Play24 {
+            get {
+                object obj = ResourceManager.GetObject("Play24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap restarted {
             get {
                 object obj = ResourceManager.GetObject("restarted", resourceCulture);
@@ -186,6 +196,16 @@ namespace DockerClientForWindows.Properties {
         internal static System.Drawing.Bitmap running32 {
             get {
                 object obj = ResourceManager.GetObject("running32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Stop24 {
+            get {
+                object obj = ResourceManager.GetObject("Stop24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
